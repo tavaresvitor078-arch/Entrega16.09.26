@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Configurações - PediuPatrão</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container-fluid px-4">
+        <h1 class="mt-4"><i class="bi bi-gear-fill me-2"></i>Painel de Configurações</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Gerenciamento Geral do Sistema</li>
+        </ol>
+
+        <div class="row">
+            <!-- Card Produtos -->
+            <div class="col-xl-4 col-md-6 mb-4">
+                <div class="card bg-dark text-white h-100 shadow-sm">
+                    <div class="card-body">
+                        <div class="card-title d-flex align-items-center">
+                            <i class="bi bi-boxes fs-3 me-2 text-warning"></i>
+                            <h5 class="mb-0">Produtos</h5>
+                        </div>
+                        <p class="card-text mt-3">Gerencie o cardápio, preços e itens disponíveis para pedidos.</p>
+                    </div>
+                    <div class="card-footer d-flex align-items-center justify-content-between bg-secondary bg-opacity-25">
+                        <a class="small text-white stretched-link text-decoration-none" th:href="@{/produtos}">Aceder a Produtos</a>
+                        <i class="bi bi-chevron-right text-white"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card Usuários (Apenas Admin) -->
+            <div class="col-xl-4 col-md-6 mb-4" th:if="${#authorization.expression('hasAnyAuthority(''ADMIN'', ''ROLE_ADMIN'')')}">
+                <div class="card bg-dark text-white h-100 shadow-sm">
+                    <div class="card-body">
+                        <div class="card-title d-flex align-items-center">
+                            <i class="bi bi-people-fill fs-3 me-2 text-info"></i>
+                            <h5 class="mb-0">Usuários</h5>
+                        </div>
+                        <p class="card-text mt-3">Gerencie contas de utilizadores, papéis e permissões de acesso.</p>
+                    </div>
+                    <div class="card-footer d-flex align-items-center justify-content-between bg-secondary bg-opacity-25">
+                        <a class="small text-white stretched-link text-decoration-none" th:href="@{/usuarios}">Aceder a Usuários</a>
+                        <i class="bi bi-chevron-right text-white"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card Auditoria (Admin e Gerente) -->
+            <div class="col-xl-4 col-md-6 mb-4" th:if="${#authorization.expression('hasAnyAuthority(''ADMIN'', ''ROLE_ADMIN'', ''GERENTE'', ''ROLE_GERENTE'')')}">
+                <div class="card bg-dark text-white h-100 shadow-sm">
+                    <div class="card-body">
+                        <div class="card-title d-flex align-items-center">
+                            <i class="bi bi-journal-text fs-3 me-2 text-success"></i>
+                            <h5 class="mb-0">Auditoria</h5>
+                        </div>
+                        <p class="card-text mt-3">Consulte o registo de atividades e histórico de ações no sistema.</p>
+                    </div>
+                    <div class="card-footer d-flex align-items-center justify-content-between bg-secondary bg-opacity-25">
+                        <a class="small text-white stretched-link text-decoration-none" th:href="@{/auditoria}">Aceder à Auditoria</a>
+                        <i class="bi bi-chevron-right text-white"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

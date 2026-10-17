@@ -1,1 +1,4 @@
-/build/
+/target/
+.m2/
+.mvn.zip
+target/

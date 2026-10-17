@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registo de Auditoria - PediuPatrão</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+    <div class="container mt-4">
+        <h2>Registos de Auditoria</h2>
+        <a href="/" class="btn btn-secondary mb-3">Voltar</a>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Data/Hora</th>
+                        <th>Utilizador</th>
+                        <th>Perfil</th>
+                        <th>Operação</th>
+                        <th>Entidade</th>
+                        <th>Campo</th>
+                        <th>Anterior</th>
+                        <th>Novo</th>
+                        <th>Justificativa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="audit : ${auditorias}">
+                        <td th:text="${audit.dataHora}"></td>
+                        <td th:text="${audit.usuario}"></td>
+                        <td th:text="${audit.perfil}"></td>
+                        <td th:text="${audit.operacao}"></td>
+                        <td th:text="${audit.entidadeAfetada}"></td>
+                        <td th:text="${audit.campoAlterado}"></td>
+                        <td th:text="${audit.valorAnterior}"></td>
+                        <td th:text="${audit.valorNovo}"></td>
+                        <td th:text="${audit.justificativa}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
